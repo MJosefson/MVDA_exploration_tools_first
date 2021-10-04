@@ -19,7 +19,7 @@ import sklearn.model_selection
 from sklearn.decomposition import PCA
 from sklearn.cross_decomposition import PLSRegression
 
-__version__ = '2021-03-03'
+__version__ = '2021-10-04'
 
 
 def sumsq(A):
@@ -175,7 +175,13 @@ class Fig():
             self.axes[row, col].legend(**kwargs)
             
     def grid(self, setting=True, row=0, col=0, **kwargs):
-        self.axes[row, col].grid(setting, **kwargs) 
+        self.axes[row, col].grid(setting, **kwargs)
+        
+    def invert_xaxis(self, row=0, col=0):
+        self.axes[row, col].invert_xaxis()
+            
+    def invert_yaxis(self, row=0, col=0):
+        self.axes[row, col].invert_yaxis()
             
     def xlabel(self, txt, row=0, col=0, **kwargs):
         self.axes[row, col].set_xlabel(txt, **kwargs)
@@ -388,7 +394,7 @@ class PCA_model(PCA):
     
     @property    
     def P(self):
-        return  self.T.T @ self.X_model
+        return self.components_
 
 
 
